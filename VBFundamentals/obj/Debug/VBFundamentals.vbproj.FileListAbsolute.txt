@@ -1,0 +1,11 @@
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.vbproj.AssemblyReference.cache
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.Resources.resources
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.vbproj.GenerateResource.cache
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.vbproj.CoreCompileInputs.cache
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\bin\Debug\VBFundamentals.exe.config
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\bin\Debug\VBFundamentals.exe
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\bin\Debug\VBFundamentals.pdb
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\bin\Debug\VBFundamentals.xml
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.exe
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.xml
+C:\Users\Leonid.Ristanovski\source\repos\VBFundamentals\VBFundamentals\obj\Debug\VBFundamentals.pdb
