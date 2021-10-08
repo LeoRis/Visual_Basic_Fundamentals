@@ -83,15 +83,45 @@
         Console.WriteLine(SellDate.Minute)
         Console.WriteLine(SellDate.Second)
 
-        Dim prod As New Product
+        Dim prod As New Product(1000)
         Dim sellingDate As DateTime
 
         prod.SellStartDate = #1/1/2021#
+
+        sellingDate = prod.CalculateSellEndDate(30)
+
+        Console.WriteLine("Sell date with use of a function: " + sellingDate)
+
         prod.CalculateSellEndDate(20, sellingDate)
 
         Console.WriteLine(sellingDate)
 
         Console.WriteLine("This is the end date " + prod.SellEndDate)
+
+        'prod.StandardCost = 250
+        'prod.ListPrice = 500
+
+        Console.WriteLine(prod.CalculateProfit())
+        'Console.WriteLine(prod.CalculateProfit(700))
+
+        Console.WriteLine(Product.CalculateTheProfit(900, 1400))
+
+        Dim latestProduct As New Product With {
+            .ProductID = 700,
+            .Name = "10 Specialized Bike",
+            .ProductNumber = "10-SP"
+        }
+
+        Console.WriteLine(latestProduct.ToString())
+
+        Dim latestCustomer As New Customer With {
+            .CustomerID = 1,
+            .CompanyName = "Apple Computers Inc.",
+            .FirstName = "James",
+            .LastName = "Bond"
+        }
+
+        Console.WriteLine(latestCustomer.ToString())
 
         Console.ReadKey()
     End Sub
