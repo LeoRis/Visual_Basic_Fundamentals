@@ -123,8 +123,150 @@
 
         Console.WriteLine(latestCustomer.ToString())
 
+        Dim products As String() = {"John", "Jack", "Jane"}
+
+        For index As Integer = 0 To products.Length - 1
+            Console.WriteLine(products(index))
+        Next
+
+        Dim items As New ArrayList From {
+            "Harley Davidson",
+            1,
+            3.33D,
+            New Product With {.ProductID = 1}
+        }
+
+        Dim listOfProductsAsObjects As New ArrayList From {
+            New Product() With {.ProductID = 1, .Name = "10 Speed Bike", .ProductNumber = "10-SP"},
+            New Product() With {.ProductID = 2, .Name = "Bike Helmet", .ProductNumber = "BIKE-HE"},
+            New Product() With {.ProductID = 3, .Name = "Inner Tube", .ProductNumber = "BIKE-IN-TU"}
+        }
+
+        For index As Integer = 0 To listOfProductsAsObjects.Count - 1
+            ' Direct casting is used to change the data type of the first parameter into the data type of the second one.
+            Console.WriteLine(DirectCast(listOfProductsAsObjects(index), Product).Name)
+        Next
+
+        Dim productsInMain = LoadProducts()
+
+        'Checks if a specific key exists in the dictionary
+        Console.WriteLine(productsInMain.ContainsKey(1))
+
+        'Total number of items in the dictionary
+        Console.WriteLine(productsInMain.Count)
+
+        'Removes an item by the key
+        'productsInMain.Remove(1)
+        'Console.WriteLine(productsInMain.Count)
+
+        'Remove all items
+        'productsInMain.Clear()
+        'Console.WriteLine(productsInMain.Count)
+
+        'Display the sum of all list prices
+        Console.WriteLine(
+            productsInMain.Sum(Function(p)
+                                   Return p.Value.ListPrice
+                               End Function).ToString("c"))
+
+        'Display the average of all list prices
+        Console.WriteLine(
+            productsInMain.Average(Function(p) p.Value.ListPrice).ToString("c"))
+
+        'Display the minimum of all list prices
+        Console.WriteLine(
+            productsInMain.Min(Function(p) p.Value.ListPrice).ToString("c"))
+
+        'Display the maximum of all list prices
+        Console.WriteLine(
+            productsInMain.Max(Function(p) p.Value.ListPrice).ToString("c"))
+
+        Dim listItems = LoadItems()
+
+        'Remove an item by a product object
+        listItems.Remove(listItems.Find(Function(p) p.ProductID = 708))
+        Console.WriteLine(listItems.Count)
+
+        Dim loopIndex As Integer = 0
+        Dim loopSum As Decimal = 0
+        Dim min As Decimal = Decimal.MaxValue
+        Dim max As Decimal = Decimal.MinValue
+
+        Do While loopIndex < (listItems.Count - 1)
+            Console.WriteLine(listItems(loopIndex).ToString())
+            loopSum += listItems(loopIndex).ListPrice
+
+            loopIndex += 1
+        Loop
+
+        Console.WriteLine("Sum: " & loopSum.ToString("c"))
+
+        Do
+            Console.WriteLine(listItems(loopIndex).ToString())
+            loopSum += listItems(loopIndex).ListPrice
+
+            loopIndex += 1
+        Loop While loopIndex < (listItems.Count - 1)
+
+        Console.WriteLine("Sum: " & loopSum.ToString("c"))
+
+        Do Until loopIndex > (listItems.Count - 1)
+            Console.WriteLine(listItems(loopIndex).ToString())
+
+            min = Convert.ToDecimal(
+                IIf(listItems(loopIndex).ListPrice < min,
+                    listItems(loopIndex).ListPrice,
+                    min))
+
+            loopIndex += 1
+        Loop
+
+        Console.WriteLine("Min: " & min.ToString("c"))
+
+        Do
+            Console.WriteLine(listItems(loopIndex).ToString())
+
+            max = Convert.ToDecimal(
+                IIf(listItems(loopIndex).ListPrice > max,
+                    listItems(loopIndex).ListPrice,
+                    max))
+
+            loopIndex += 1
+        Loop Until loopIndex > (listItems.Count - 1)
+
+        Console.WriteLine("Max: " & max.ToString("c"))
+
         Console.ReadKey()
     End Sub
+    Function LoadProducts() As Dictionary(Of Integer, Product)
+        Dim products As New Dictionary(Of Integer, Product)
+        Dim prod As Product
+
+        prod = New Product() With {.ProductID = 1, .Name = "10 Speed Bike", .ProductNumber = "10-SP", .ListPrice = 1431.5D}
+        products.Add(key:=prod.ProductID, value:=prod)
+
+        prod = New Product() With {.ProductID = 2, .Name = "Bike Helmet", .ProductNumber = "BH-23", .ListPrice = 102.5D}
+        products.Add(prod.ProductID, prod)
+
+        prod = New Product() With {.ProductID = 3, .Name = "Inner Tube", .ProductNumber = "IT-11", .ListPrice = 131.5D}
+        products.Add(prod.ProductID, prod)
+
+        Return products
+    End Function
+
+    Function LoadItems() As List(Of Product)
+        Dim products As New List(Of Product) From {
+            New Product() With {.ProductID = 680, .Name = "Ferrari", .ProductNumber = "FR-201", .ListPrice = 105},
+            New Product() With {.ProductID = 706, .Name = "Alfa Romeo", .ProductNumber = "AR-101", .ListPrice = 423},
+            New Product() With {.ProductID = 707, .Name = "Alpine", .ProductNumber = "AA-50", .ListPrice = 654},
+            New Product() With {.ProductID = 710, .Name = "Aston Martin", .ProductNumber = "AM-22", .ListPrice = 647},
+            New Product() With {.ProductID = 711, .Name = "Honda", .ProductNumber = "HD-13", .ListPrice = 767},
+            New Product() With {.ProductID = 713, .Name = "Red Bull", .ProductNumber = "RB-11", .ListPrice = 763},
+            New Product() With {.ProductID = 714, .Name = "Williams", .ProductNumber = "WS-01", .ListPrice = 987}
+        }
+
+        Return products
+    End Function
 
     Sub IncrementListPrice()
         Static ListPrice As Decimal = 0
@@ -133,5 +275,4 @@
 
         Console.WriteLine(ListPrice)
     End Sub
-
 End Module
